@@ -96,6 +96,10 @@ mongoose.connect(
   }
 );
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
 app.use(
   cors({
     origin: "*",
@@ -103,6 +107,7 @@ app.use(
   }
   )
 )
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
