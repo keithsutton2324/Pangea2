@@ -82,10 +82,10 @@ const ApiRoutes = require("./routes/apiRoutes.js");
 //app.use(express.static("public"));
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
+//if (process.env.NODE_ENV === "production") {
   console.log("KJS--->production");
   app.use(express.static("client/build"));
-}
+//}
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true });
 
