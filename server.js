@@ -30,7 +30,6 @@ io.on('connection', socket => {
 
     socket.join(user.room);
 
-
     // Welcome current user
     socket.emit('message', formatMessage(botName, 'You have now entered Pangea!'));
 
@@ -81,20 +80,13 @@ const mongoose = require("mongoose")
 const passport = require("./config/passport");
 const ApiRoutes = require("./routes/apiRoutes.js");
 
+app.use(express.static("public"));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true });
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/userdb2',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true });
 
 app.use(
   cors({
@@ -103,20 +95,17 @@ app.use(
   }
   )
 )
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ApiRoutes);
 
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function (req, res) {
-  //res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  //res.sendFile(path.join(__dirname, "./client/src/pages/Members.js"));
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
