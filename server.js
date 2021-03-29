@@ -96,10 +96,6 @@ mongoose.connect(
   }
 );
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
 app.use(
   cors({
     origin: "*",
@@ -121,7 +117,7 @@ app.use(express.static("public"));
 app.get("*", function (req, res) {
   //res.sendFile(path.join(__dirname, "./client/build/index.html"));
   //res.sendFile(path.join(__dirname, "./client/src/pages/Members.js"));
-  res.sendFile(path.join(__dirname, "./client/src/pages/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, function () {
