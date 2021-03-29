@@ -120,8 +120,8 @@ app.use(express.static("public"));
 // Define any API routes before this runs
 app.get("*", function (req, res) {
   //res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  //res.sendFile(path.join(__dirname, "./client/src/pages/index.html"));
-  res.sendFile(path.join(__dirname, "./client/src/pages/Members.js"));
+  //res.sendFile(path.join(__dirname, "./client/src/pages/Members.js"));
+  res.sendFile(path.join(__dirname, "./client/src/pages/index.html"));
 });
 
 app.listen(PORT, function () {
