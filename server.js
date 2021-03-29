@@ -30,6 +30,7 @@ io.on('connection', socket => {
 
     socket.join(user.room);
 
+
     // Welcome current user
     socket.emit('message', formatMessage(botName, 'You have now entered Pangea!'));
 
@@ -101,13 +102,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(ApiRoutes);
 
-//app.use(express.static("public"));
-
+/*
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
+*/
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
