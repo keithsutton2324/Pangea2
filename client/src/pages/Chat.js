@@ -1,14 +1,14 @@
 import React from "react";
 import Axios from "axios";
-
+/*
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-
-var loggedIn = "loggedOut";
+*/
+//var loggedIn = "loggedOut";
 
 class Chats extends React.Component {
     state = {
@@ -79,7 +79,7 @@ class Chats extends React.Component {
                 <script
                     src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
                     integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
-                    crossorigin="anonymous"
+                    crossOrigin="anonymous"
                 ></script>
                 <script src="/socket.io/socket.io.js"></script>
                 <script src="js/main.js"></script>

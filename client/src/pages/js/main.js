@@ -11,6 +11,7 @@ const { username, room } = Qs.parse(location.search, {
 const socket = io();
 
 // Join chatroom
+//console.log("main.js connecting... username, room: ", username, room);
 socket.emit('joinRoom', { username, room });
 
 // Get room and users

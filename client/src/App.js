@@ -31,9 +31,9 @@ export default function App() {
       <div>
         <nav>
           <ul>
-              <p><Link to="/Signup" class="clickme">Signup</Link></p>
-              <p><Link to="/Login" class="clickme">Login</Link></p>
-              <p><Link to="/Logout" class="clickme">Logout</Link></p>
+              <p><Link to="/Signup" className="clickme">Signup</Link></p>
+              <p><Link to="/Login" className="clickme">Login</Link></p>
+              <p><Link to="/Logout" className="clickme">Logout</Link></p>
           </ul>
         </nav>
 

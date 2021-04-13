@@ -1,12 +1,13 @@
-//import React from "react";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+//import React, { useState, useEffect } from "react";
+//import { Link } from "react-router-dom";
 import Axios from "axios";
 var loggedIn = false;
-
+/*
 const sleep = (milliseconds) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
+*/
 class Login extends React.Component {
   state = {
     username: "",

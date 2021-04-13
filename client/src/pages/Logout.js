@@ -1,13 +1,13 @@
 import React from "react";
 import Axios from "axios";
-
+/*
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-
+*/
 class Logout extends React.Component {
   state = {
     username: "",

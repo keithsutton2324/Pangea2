@@ -1,7 +1,7 @@
 import React from "react";
 import Axios from "axios";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+//import { Col, Row, Container } from "../components/Grid";
+//import Jumbotron from "../components/Jumbotron";
 
 class Signup extends React.Component {
   state = {

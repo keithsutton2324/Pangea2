@@ -1,8 +1,8 @@
-//import React from "react";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+//import React, { useState, useEffect } from "react";
+//import { Link } from "react-router-dom";
 import Axios from "axios";
-var loggedIn = false;
+//var loggedIn = false;
 
 class Members extends React.Component {
   state = {
@@ -29,14 +29,14 @@ class Members extends React.Component {
     ).then((response) => {
       // detect successful Members
       if (response.data.username) {
-        loggedIn = true;
+        //loggedIn = true;
         window.$loggedIn = "loggedIn"
         console.log("Members Login Successful");
         console.log("Members response: ", response)
       }
     })
       .catch(error => {
-        loggedIn = false;
+        //loggedIn = false;
         window.$loggedIn = "loggedOut"
         console.log("unsuccessful Members error:", error);
       })

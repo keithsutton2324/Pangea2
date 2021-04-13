@@ -18,11 +18,12 @@ const io = socketio(server);
 const botName = 'Local Time';
 
 // Run when client connects
-//console.log("server.js connecting... io,  socketio,  username, room", io,  socketio);
+//console.log("server.js connecting... io,  socketio: ", io,  socketio);
 io.on('connection', socket => {
   socket.on('joinRoom', ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
+    //console.log("server.js connecting... user, user.room: ", user, user.room);
     //console.log("server.js connected ,  username, room, socket.id, user", username, room, socket.id, user);
 
     socket.join(user.room);
