@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true,
 useUnifiedTopology: true,
 useCreateIndex: true,
-useFindAndModify: false });
+useFindAndModify: false, });
 
 app.use(
   cors({
@@ -48,6 +48,9 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ApiRoutes);
+
+// routes
+app.use(require("./routes/apiRoutes.js"));
 
 // Send every request to the React app
 // Define any API routes before this runs
