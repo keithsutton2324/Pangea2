@@ -15,16 +15,54 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+
+const cors = require("cors");
+const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose")
+const passport = require("./config/passport");
+const ApiRoutes = require("./routes/apiRoutes.js");
+
+// Set static folder
+app.use(express.static("public"));
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  console.log("KJS--->production");
+  app.use(express.static("client/build"));
+}
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true });
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true
+  }
+  )
+)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(ApiRoutes);
+
+// Send every request to the React app
+// Define any API routes before this runs
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 const botName = 'Local Time';
 
 // Run when client connects
-//console.log("server.js connecting... io,  socketio: ", io,  socketio);
+//console.log("server.js connecting... socketio, server, io: ", socketio, server, io);
+
 io.on('connection', socket => {
   socket.on('joinRoom', ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
-    //console.log("server.js connecting... user, user.room: ", user, user.room);
-    //console.log("server.js connected ,  username, room, socket.id, user", username, room, socket.id, user);
+    //console.log("server.js connected user, user.room: ", user, user.room);
+    //console.log("server.js connected socket, socket.id: ", socket, socket.id);
 
     socket.join(user.room);
 
@@ -71,42 +109,6 @@ io.on('connection', socket => {
       });
     }
   });
-});
-
-const cors = require("cors");
-const PORT = process.env.PORT || 3001;
-const mongoose = require("mongoose")
-const passport = require("./config/passport");
-const ApiRoutes = require("./routes/apiRoutes.js");
-
-// Set static folder
-app.use(express.static("public"));
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  console.log("KJS--->production");
-  app.use(express.static("client/build"));
-}
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userdb2", { useNewUrlParser: true });
-
-app.use(
-  cors({
-    origin: "*",
-    credentials: true
-  }
-  )
-)
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(ApiRoutes);
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.listen(PORT, function () {
